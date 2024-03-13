@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlumnoController;
+use \App\Http\Controllers\ProfesorController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,13 +16,20 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::view("main", "main");
 Route::view("about", "about");
+Route::view("react", "react");
 
+Route::get("main", \App\Http\Controllers\MainController::class);
+
+Route::resource("alumnos", AlumnoController::class);
+Route::resource("profesores", ProfesorController::class);
+
+Route::get('/post/create', [PostController::class, 'create']);
+Route::post('/post', [PostController::class, 'store']);
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('main');
+})->name("index");
 
 Route::get('/dashboard', function () {
     return view('dashboard');

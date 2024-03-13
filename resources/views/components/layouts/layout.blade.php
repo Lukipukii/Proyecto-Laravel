@@ -6,14 +6,15 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    @vite("resources/css/app.css")
+    @viteReactRefresh
+    @vite(["resources/js/app.jsx", "resources/css/app.css"])
 </head>
 <body>
 
 <x-header/>
 <x-nav/>
 
-<main class="h-65v bg-main ">
+<main class="h-65v bg-main @stack('main')">
 
    {{$slot}}
 
